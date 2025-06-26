@@ -1,3 +1,6 @@
+#Q6: Implement in python SVM/Softmax classifier for CIFAR-10 dataset.
+
+
 import tensorflow as tf
 
 # 1. Load and normalize data
@@ -17,10 +20,4 @@ model.compile(optimizer='adam',
 
 # 4. Train
 model.fit(x_train, y_train, epochs=5)
-
-# 5. Predict and print 5 results
-logits = model.predict(x_test)
-predicted = tf.argmax(logits, axis=1).numpy()
-
-for i in range(5):
-    print("True:", y_test[i][0], "Predicted:", predicted[i])
+model.evaluate(x_test, y_test)

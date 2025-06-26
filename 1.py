@@ -1,3 +1,7 @@
+#Q1 Write a python program to implement the learning rules such as Hebbian Learning Rule,
+#Perceptron Learning Rule, Delta Learning Rule, Correlation Learning Rule, and OutStar Learning Rule in deep learning.
+
+
 import numpy as np
 
 # Sample input (x), output (y), and initial weights (w)

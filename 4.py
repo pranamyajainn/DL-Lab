@@ -1,8 +1,11 @@
+#Q4 Write a program in deep learning to apply image processing operations such as Histogram equalization, 
+#Thresholding, Edge detection, Data augmentation, Morphological Operations.
+
+
 import cv2
 import numpy as np
 
 def process_image(image_path):
-    # 📥 Read the image in grayscale using '0' (shortcut for cv2.IMREAD_GRAYSCALE)
     img = cv2.imread(image_path, 0)
 
     # 1️⃣ Histogram Equalization - improve contrast
@@ -21,15 +24,12 @@ def process_image(image_path):
     kernel = np.ones((5, 5), np.uint8)
     morphed = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
 
-    # 🖼️ Display all images
     cv2.imshow('Original', img)
     cv2.imshow('Equalized', equalized)
     cv2.imshow('Thresholded', thresholded)
     cv2.imshow('Edges', edges)
     cv2.imshow('Flipped', flipped)
     cv2.imshow('Morphed (Close)', morphed)
-
-    # ⏳ Wait for a key press and close all windows
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 

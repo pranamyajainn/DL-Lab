@@ -1,3 +1,8 @@
+#Q2 Develop a Python program to implement various activation functions, including the sigmoid,
+#tanh (hyperbolic tangent), ReLU (Rectified Linear Unit), Leaky ReLU, and softmax. 
+#The program should include functions to compute the output of each activation function for a given input.
+#Additionally, it should be capable of plotting graphs representing the output of each activation function over a range of input values.
+
 import numpy as np
 import matplotlib.pyplot as plt
 

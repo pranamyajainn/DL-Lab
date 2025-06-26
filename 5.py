@@ -1,25 +1,23 @@
-import torch
-from torchvision import transforms
-from PIL import Image
+#Q5 Implement image style transfer, transforming a given content image to adopt the artistic style of another image,
+#using a pre-trained model.
+import tensorflow as tf
+import tensorflow_hub as hub
+import matplotlib.pyplot as plt
 
-# Load model
-model = torch.load("mosaic.pth")
-model.eval()
+def load_and_process_image(image_path):
+    img = tf.image.resize(tf.image.decode_image(tf.io.read_file(image_path), channels=3), [512, 512])
+    return img[tf.newaxis, ...] / 255.0
 
-# Load and transform image
-img = Image.open("content.jpg").convert("RGB")
-preprocess = transforms.Compose([
-    transforms.Resize(512),
-    transforms.ToTensor(),
-    transforms.Lambda(lambda x: x * 255)
-])
-input_tensor = preprocess(img).unsqueeze(0)
+model = hub.load('model')
 
-# Apply style
-with torch.no_grad():
-    output = model(input_tensor)
+content_image = load_and_process_image('content.jpeg')
+style_image = load_and_process_image('style.jpeg')
 
-# Save result
-result = transforms.ToPILImage()(output[0].clamp(0, 255) / 255)
-result.save("stylized.jpg")
-result.show()
+stylized_image = model(content_image, style_image)[0]
+
+plt.figure(figsize=(12, 4))
+for i, img in enumerate([content_image, style_image, stylized_image], 1):
+    plt.subplot(1, 3, i)
+    plt.imshow(img[0])
+    plt.axis('off')
+plt.show()

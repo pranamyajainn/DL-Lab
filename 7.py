@@ -1,3 +1,5 @@
+#Q7 Develop a convolutional neural network (CNN) model to classify handwritten digits using the MNIST dataset. 
+#The goal is to train a model that accurately identifies digits (0-9) from images.
 import tensorflow as tf
 
 # 1. Load data
@@ -20,6 +22,4 @@ model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=3)
-
-# 5. Test accuracy
 model.evaluate(x_test, y_test)
